@@ -1,0 +1,92 @@
+{
+  "_instructions": "Edit any text below to update your website. Then drag the website folder to Netlify to re-deploy, or just tell Claude what to change.",
+
+  "hero": {
+    "badge": "Physician Education • Medical Malpractice • Healthcare Law",
+    "title_line1": "The Charted",
+    "title_line2": "Defense",
+    "tagline": "Where medicine meets the law — an MD's journey to JD",
+    "description": "Rigorous case analysis, risk management strategy, and healthcare law — built by a physician who has been through litigation and is charting a new course for physician education.",
+    "subscribe_url": "https://thecharteddefense.substack.com/subscribe"
+  },
+
+  "about": {
+    "name": "Michael Coleman, MD",
+    "bio_paragraph_1": "Michael Coleman, MD is a hospitalist and Hospital Medicine Program Director with US Acute Care Solutions in Alabama. He earned his BS in Chemistry from The University of Alabama at Birmingham, his MD from UAB School of Medicine, and completed his Family Medicine residency at Baptist Family Residency Program in Montgomery.",
+    "bio_paragraph_2": "Michael has personally been named as a defendant in a medical malpractice lawsuit — an experience that profoundly shaped his understanding of how litigation impacts physicians. That firsthand perspective drives the mission of The Charted Defense.",
+    "bio_paragraph_3": "Now pursuing a legal degree, Michael brings an authentic MD-to-JD perspective that few in the field can offer. His goal: to educate, prepare, and support physicians navigating the legal landscape of modern medicine — because understanding how clinical decisions become legal evidence is a learnable skill.",
+    "quote": "Patient harm and physician harm can coexist without canceling each other. Both realities are held simultaneously.",
+    "credentials": {
+      "role": "Hospitalist & Program Director",
+      "pursuing": "Legal Degree",
+      "experience": "13+ Years Clinical"
+    }
+  },
+
+  "content_series": [
+    {
+      "title": "Case Files",
+      "icon": "⚖",
+      "description": "Headline malpractice cases turned into practical bedside risk lessons. Timeline reconstruction, pleadings logic, defense counterfactuals, and charting templates.",
+      "tags": ["Free + Paid", "Newsletter", "Podcast"]
+    },
+    {
+      "title": "Documentation Defense",
+      "icon": "📄",
+      "description": "Making charting defensibility a repeatable clinical skill. Phrase libraries, micro-checklists, copy-forward safety, metadata-safe late entries, and escalation notes.",
+      "tags": ["Paid", "Toolkit"]
+    },
+    {
+      "title": "Policy Watch",
+      "icon": "🏛",
+      "description": "Translating policy and regulatory changes into physician-level action. CMS changes, telehealth licensure, tort reform, and scope-of-practice legislation.",
+      "tags": ["Free", "Policy Brief"]
+    },
+    {
+      "title": "Risk Rounds",
+      "icon": "🔬",
+      "description": "Scenario-based malpractice prevention training. Interactive case simulations with branching decisions, legal debrief, and defense-grade documentation examples.",
+      "tags": ["Paid", "Interactive"]
+    },
+    {
+      "title": "The Legal Playbook",
+      "icon": "⚙",
+      "description": "How med-mal litigation actually works. Complaint anatomy, discovery, depositions, expert battles, damages framing, settlement dynamics, and trial narrative.",
+      "tags": ["Paid", "Explainer Series"]
+    },
+    {
+      "title": "Physician Survival Guide",
+      "icon": "🛡",
+      "description": "Protecting the physician, not just the chart. Burnout risk controls, contract traps, insurance stacking, board complaint preparedness, and reputation management.",
+      "tags": ["Free", "Career Strategy"]
+    }
+  ],
+
+  "collaborate": {
+    "options": [
+      {
+        "title": "Case Submissions",
+        "description": "Know of a case that physicians need to understand? We investigate publicly available cases that carry lessons for clinical practice. Submit a case or topic for consideration."
+      },
+      {
+        "title": "Guest Contributions",
+        "description": "Attorneys, risk managers, and clinical specialists who want to contribute expert perspectives on malpractice trends, defense strategy, or patient safety."
+      },
+      {
+        "title": "Institutional Partnerships",
+        "description": "Hospitals, medical groups, and residency programs interested in incorporating medico-legal education into their training. Custom content and presentation opportunities available."
+      },
+      {
+        "title": "Media & Speaking",
+        "description": "Michael is available for podcast appearances, conference presentations, and media commentary on medical malpractice trends, physician litigation impact, and healthcare law."
+      }
+    ]
+  },
+
+  "social_links": {
+    "substack": "https://thecharteddefense.substack.com",
+    "youtube": "https://youtube.com/@thecharteddefense",
+    "linkedin": "",
+    "email": "thecharteddefense@gmail.com"
+  }
+}

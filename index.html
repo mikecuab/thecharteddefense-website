@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Charted Defense — Where Medicine Meets the Law</title>
+  <meta name="description" content="The Charted Defense — rigorous physician education at the intersection of clinical medicine and the courtroom. Medical malpractice case analysis, risk management, and healthcare law from Michael Coleman, MD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e1a;
+      color: #e8e6e1;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== COLORS ===== */
+    :root {
+      --navy-deep: #0a0e1a;
+      --navy: #0f1629;
+      --navy-light: #1a2240;
+      --navy-mid: #243056;
+      --gold: #c9a84c;
+      --gold-light: #e4c96a;
+      --gold-dim: #a08532;
+      --cream: #e8e6e1;
+      --cream-dim: #b0aea8;
+      --white: #f5f4f0;
+      --red-muted: #8b3a3a;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.2; }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 26, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(10, 14, 26, 0.97);
+      border-bottom-color: rgba(201, 168, 76, 0.25);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-brand-icon {
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+    .nav-brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--gold);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold) !important;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--navy-deep) !important;
+    }
+    .nav-cta::after { display: none !important; }
+
+    /* Mobile menu */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      transition: all 0.3s;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201, 168, 76, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(15, 22, 41, 0.8) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(15, 22, 41, 0.8) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      border-radius: 2px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: var(--cream-dim);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--cream-dim);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      color: var(--gold);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.08);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--cream-dim);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      animation: float 2.5s ease-in-out infinite;
+    }
+    .hero-scroll .arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== SECTION LAYOUT ===== */
+    section {
+      padding: 6rem 2rem;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--cream-dim);
+      max-width: 650px;
+      line-height: 1.8;
+    }
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2rem 0;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--navy);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .about-image {
+      position: relative;
+    }
+    .about-image-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 2px;
+    }
+    .about-image-initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.15;
+    }
+    .about-credentials {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .credential {
+      padding: 0.75rem 1.25rem;
+      background: rgba(201, 168, 76, 0.06);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 3px;
+    }
+    .credential-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.25rem;
+    }
+    .credential-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+    }
+    .about-text p {
+      margin-bottom: 1.25rem;
+      color: var(--cream-dim);
+      line-height: 1.85;
+    }
+    .about-text .emphasis {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    /* ===== CONTENT / WHAT WE DO ===== */
+    #content {
+      background: var(--navy-deep);
+    }
+    .content-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .content-card {
+      padding: 2.5rem 2rem;
+      background: var(--navy);
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      border-radius: 4px;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .content-card:hover {
+      border-color: rgba(201, 168, 76, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .content-card:hover::before { opacity: 1; }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    .card-title {
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .card-description {
+      font-size: 0.92rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.75rem;
+      background: rgba(201, 168, 76, 0.08);
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      border-radius: 2px;
+      color: var(--gold-dim);
+    }
+
+    /* ===== SERIES SHOWCASE (OTR) ===== */
+    #series {
+      background: var(--navy);
+      position: relative;
+    }
+    #series::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+    }
+    .series-feature {
+      margin-top: 3rem;
+      padding: 3rem;
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.04), rgba(15, 22, 41, 0.5));
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      border-radius: 6px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .series-info h3 {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .series-info .series-sub {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .series-info p {
+      color: var(--cream-dim);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .season-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.5rem;
+    }
+    .season-list li {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .season-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--gold-dim);
+      border-radius: 1px;
+    }
+    .season-list li.active::before {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .series-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .episode-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(10, 14, 26, 0.6);
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      border-radius: 3px;
+      transition: border-color 0.3s;
+    }
+    .episode-bar:hover {
+      border-color: rgba(201, 168, 76, 0.25);
+    }
+    .ep-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 2.5rem;
+    }
+    .ep-info {
+      flex: 1;
+    }
+    .ep-title {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--cream);
+    }
+    .ep-desc {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+      margin-top: 0.15rem;
+    }
+    .ep-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .ep-badge.live { background: rgba(201, 168, 76, 0.15); color: var(--gold); }
+    .ep-badge.dev { background: rgba(100, 140, 200, 0.15); color: #8ab4f8; }
+
+    /* ===== EDUCATIONAL HUB ===== */
+    #education {
+      background: var(--navy-deep);
+    }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .edu-card {
+      padding: 2rem;
+      background: var(--navy);
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .edu-card:hover {
+      border-color: rgba(201, 168, 76, 0.2);
+    }
+    .edu-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .edu-card h4 {
+      font-size: 1.3rem;
+      color: var(--white);
+    }
+    .edu-tier {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+    }
+    .edu-tier.free { background: rgba(100, 180, 100, 0.12); color: #7bc77b; }
+    .edu-tier.paid { background: rgba(201, 168, 76, 0.12); color: var(--gold); }
+    .edu-tier.both { background: rgba(150, 140, 200, 0.12); color: #b0a8e8; }
+    .edu-card p {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+    }
+
+    /* ===== ARCHIVE ===== */
+    #archive {
+      background: var(--navy);
+    }
+    .archive-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .archive-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 2px;
+      color: var(--cream-dim);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.06);
+    }
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .archive-item {
+      padding: 1.75rem;
+      background: rgba(15, 22, 41, 0.6);
+      border: 1px solid rgba(201, 168, 76, 0.06);
+      border-radius: 4px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .archive-item:hover {
+      border-color: rgba(201, 168, 76, 0.2);
+      transform: translateY(-2px);
+    }
+    .archive-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .archive-series {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .archive-date {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+    }
+    .archive-item h4 {
+      font-size: 1.15rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+    .archive-item p {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ===== COLLABORATE ===== */
+    #collaborate {
+      background: var(--navy-deep);
+      position: relative;
+    }
+    .collab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .collab-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .collab-option {
+      padding: 1.75rem;
+      background: var(--navy);
+      border: 1px solid rgba(201, 168, 76, 0.08);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .collab-option:hover {
+      border-color: rgba(201, 168, 76, 0.2);
+    }
+    .collab-option h4 {
+      font-size: 1.15rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .collab-option p {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+    .contact-form {
+      padding: 2.5rem;
+      background: var(--navy);
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      border-radius: 4px;
+    }
+    .contact-form h3 {
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .contact-form > p {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      margin-bottom: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(10, 14, 26, 0.6);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 3px;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-group select option {
+      background: var(--navy);
+      color: var(--cream);
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      max-width: 360px;
+    }
+    .footer-col h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+    }
+    .footer-socials {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .footer-socials a {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .footer-socials a:hover { color: var(--gold); }
+
+    /* ===== DISCLAIMER BAR ===== */
+    .disclaimer {
+      background: rgba(139, 58, 58, 0.08);
+      border-top: 1px solid rgba(139, 58, 58, 0.2);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    .disclaimer p {
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===== LOADING SPINNER ===== */
+    .archive-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+    }
+    .archive-loading p {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      margin-top: 1rem;
+    }
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid rgba(201, 168, 76, 0.15);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      margin: 0 auto;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 14, 26, 0.98);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      }
+      .nav-toggle { display: flex; }
+      .about-grid,
+      .series-feature,
+      .collab-grid {
+        grid-template-columns: 1fr;
+      }
+      .content-cards {
+        grid-template-columns: 1fr;
+      }
+      .edu-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .season-list {
+        grid-template-columns: 1fr;
+      }
+      .archive-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="nav-brand-icon">CD</div>
+        <span class="nav-brand-text">The Charted Defense</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#content">Content</a></li>
+        <li><a href="#series">On The Record</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#archive">Archive</a></li>
+        <li><a href="#collaborate">Collaborate</a></li>
+        <li><a href="https://thecharteddefense.substack.com" target="_blank" class="nav-cta">Subscribe</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">Physician Education &bull; Medical Malpractice &bull; Healthcare Law</div>
+      <h1>The Charted <span class="gold">Defense</span></h1>
+      <p class="hero-tagline">"Where medicine meets the law &mdash; an MD's journey to JD"</p>
+      <p class="hero-description">
+        Rigorous case analysis, risk management strategy, and healthcare law &mdash; built by a physician who has been through litigation and is charting a new course for physician education.
+      </p>
+      <div class="hero-actions">
+        <a href="https://thecharteddefense.substack.com/subscribe" target="_blank" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Subscribe Free
+        </a>
+        <a href="#content" class="btn btn-outline">Explore Content</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="section-inner">
+      <span class="section-label reveal">About the Creator</span>
+      <h2 class="section-title reveal">Michael Coleman, MD</h2>
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <div class="about-image-frame">
+            <span class="about-image-initials">MC</span>
+          </div>
+          <div class="about-credentials">
+            <div class="credential">
+              <div class="credential-label">Role</div>
+              <div class="credential-value">Hospitalist &amp; Program Director</div>
+            </div>
+            <div class="credential">
+              <div class="credential-label">Pursuing</div>
+              <div class="credential-value">Legal Degree</div>
+            </div>
+            <div class="credential">
+              <div class="credential-label">Experience</div>
+              <div class="credential-value">13+ Years Clinical</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <p>
+            Michael Coleman, MD is a hospitalist and Hospital Medicine Program Director with US Acute Care Solutions in Alabama. He earned his BS in Chemistry from The University of Alabama at Birmingham, his MD from UAB School of Medicine, and completed his Family Medicine residency at Baptist Family Residency Program in Montgomery.
+          </p>
+          <p>
+            <span class="emphasis">Michael has personally been named as a defendant in a medical malpractice lawsuit</span> &mdash; an experience that profoundly shaped his understanding of how litigation impacts physicians. That firsthand perspective drives the mission of The Charted Defense.
+          </p>
+          <p>
+            Now pursuing a legal degree, Michael brings an authentic MD-to-JD perspective that few in the field can offer. His goal: to educate, prepare, and support physicians navigating the legal landscape of modern medicine &mdash; because understanding how clinical decisions become legal evidence is a learnable skill.
+          </p>
+          <div class="divider"></div>
+          <p style="font-style: italic; color: var(--gold-dim); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;">
+            "Patient harm and physician harm can coexist without canceling each other. Both realities are held simultaneously."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTENT ===== -->
+  <section id="content">
+    <div class="section-inner">
+      <span class="section-label reveal">What We Publish</span>
+      <h2 class="section-title reveal">Content Built for Physicians</h2>
+      <p class="section-subtitle reveal">
+        Every piece starts with what happened clinically, moves into legal interpretation, and ends with what to do differently next shift.
+      </p>
+      <div class="content-cards">
+        <div class="content-card reveal">
+          <div class="card-icon">&#9878;</div>
+          <h3 class="card-title">Case Files</h3>
+          <p class="card-description">
+            Headline malpractice cases turned into practical bedside risk lessons. Timeline reconstruction, pleadings logic, defense counterfactuals, and charting templates.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Free + Paid</span>
+            <span class="card-tag">Newsletter</span>
+            <span class="card-tag">Podcast</span>
+          </div>
+        </div>
+        <div class="content-card reveal">
+          <div class="card-icon">&#128196;</div>
+          <h3 class="card-title">Documentation Defense</h3>
+          <p class="card-description">
+            Making charting defensibility a repeatable clinical skill. Phrase libraries, micro-checklists, copy-forward safety, metadata-safe late entries, and escalation notes.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Paid</span>
+            <span class="card-tag">Toolkit</span>
+          </div>
+        </div>
+        <div class="content-card reveal">
+          <div class="card-icon">&#127963;</div>
+          <h3 class="card-title">Policy Watch</h3>
+          <p class="card-description">
+            Translating policy and regulatory changes into physician-level action. CMS changes, telehealth licensure, tort reform, and scope-of-practice legislation.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Free</span>
+            <span class="card-tag">Policy Brief</span>
+          </div>
+        </div>
+        <div class="content-card reveal">
+          <div class="card-icon">&#128300;</div>
+          <h3 class="card-title">Risk Rounds</h3>
+          <p class="card-description">
+            Scenario-based malpractice prevention training. Interactive case simulations with branching decisions, legal debrief, and defense-grade documentation examples.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Paid</span>
+            <span class="card-tag">Interactive</span>
+          </div>
+        </div>
+        <div class="content-card reveal">
+          <div class="card-icon">&#9881;</div>
+          <h3 class="card-title">The Legal Playbook</h3>
+          <p class="card-description">
+            How med-mal litigation actually works. Complaint anatomy, discovery, depositions, expert battles, damages framing, settlement dynamics, and trial narrative.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Paid</span>
+            <span class="card-tag">Explainer Series</span>
+          </div>
+        </div>
+        <div class="content-card reveal">
+          <div class="card-icon">&#128737;</div>
+          <h3 class="card-title">Physician Survival Guide</h3>
+          <p class="card-description">
+            Protecting the physician, not just the chart. Burnout risk controls, contract traps, insurance stacking, board complaint preparedness, and reputation management.
+          </p>
+          <div class="card-tags">
+            <span class="card-tag">Free</span>
+            <span class="card-tag">Career Strategy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ON THE RECORD ===== -->
+  <section id="series">
+    <div class="section-inner">
+      <span class="section-label reveal">Flagship Series</span>
+      <h2 class="section-title reveal">On The Record</h2>
+      <p class="section-subtitle reveal">
+        A documentary-style premium series. Each season reconstructs a single malpractice case across multiple episodes &mdash; turning court records into cinematic storytelling.
+      </p>
+      <div class="series-feature reveal">
+        <div class="series-info">
+          <div class="series-sub">10 Seasons Planned</div>
+          <h3>From Complaint to Verdict</h3>
+          <p>
+            Each OTR season takes one real malpractice case and breaks it down episode by episode: the clinical encounter, what went wrong, the legal filings, expert testimony, defense strategy, and the final outcome.
+          </p>
+          <p>
+            Spanning critical care, obstetrics, radiology, emergency medicine, psychiatry, pediatrics, and hospital system liability &mdash; OTR is a complete education in how clinical medicine becomes courtroom evidence.
+          </p>
+          <ul class="season-list">
+            <li class="active">S1: Pearson v. MedStar</li>
+            <li class="active">S2: Labby v. Allegra</li>
+            <li>S3: Olson v. St. Luke's</li>
+            <li>S4: Powell v. Phoebe Putney</li>
+            <li>S5: HUP Birth Injury</li>
+            <li>S6: Bochenek v. NightHawk</li>
+            <li>S7: UC Davis Stroke</li>
+            <li>S8: Binkowski v. IHS</li>
+            <li>S9: Zancanella v. Steward</li>
+            <li>S10: Kowalski v. JH All Children's</li>
+          </ul>
+        </div>
+        <div class="series-visual">
+          <div class="episode-bar">
+            <span class="ep-num">S2</span>
+            <div class="ep-info">
+              <div class="ep-title">Labby v. Allegra</div>
+              <div class="ep-desc">Warfarin, DOACs, and the TRAPS Trial</div>
+            </div>
+            <span class="ep-badge dev">In Development</span>
+          </div>
+          <div class="episode-bar">
+            <span class="ep-num">E01</span>
+            <div class="ep-info">
+              <div class="ep-title">Patient Background</div>
+              <div class="ep-desc">Clinical history and the medical context</div>
+            </div>
+          </div>
+          <div class="episode-bar">
+            <span class="ep-num">E02</span>
+            <div class="ep-info">
+              <div class="ep-title">The Medical Science</div>
+              <div class="ep-desc">Anticoagulation therapy and evolving standards</div>
+            </div>
+          </div>
+          <div class="episode-bar">
+            <span class="ep-num">E03</span>
+            <div class="ep-info">
+              <div class="ep-title">Decline &amp; Death</div>
+              <div class="ep-desc">The clinical deterioration that led to allegations</div>
+            </div>
+          </div>
+          <div class="episode-bar">
+            <span class="ep-num">E04</span>
+            <div class="ep-info">
+              <div class="ep-title">The Complaint</div>
+              <div class="ep-desc">Legal filings and multi-defendant dynamics</div>
+            </div>
+          </div>
+          <div class="episode-bar">
+            <span class="ep-num">E05</span>
+            <div class="ep-info">
+              <div class="ep-title">The Defense</div>
+              <div class="ep-desc">Defense strategy and standard-of-care synthesis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION HUB ===== -->
+  <section id="education">
+    <div class="section-inner">
+      <span class="section-label reveal">Learning Center</span>
+      <h2 class="section-title reveal">Educational Resources</h2>
+      <p class="section-subtitle reveal">
+        Organized by clinical topic and learning objective. Resources designed for practicing physicians who want to practice defensively without practicing fearfully.
+      </p>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="edu-card-header">
+            <h4>Case Analysis Library</h4>
+            <span class="edu-tier both">Free + Paid</span>
+          </div>
+          <p>A searchable, specialty-organized archive of malpractice case breakdowns. Filter by clinical area, allegation type, or outcome. Each analysis follows a consistent framework: clinical narrative, malpractice exposure, documentation lessons, and shift-ready takeaways.</p>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-card-header">
+            <h4>Documentation Toolkit</h4>
+            <span class="edu-tier paid">Paid</span>
+          </div>
+          <p>Defensible note templates, phrase libraries, and micro-checklists for common clinical scenarios. Built from real malpractice cases where documentation failures drove adverse outcomes. Covers admission notes, handoff documentation, discharge summaries, and informed consent.</p>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-card-header">
+            <h4>Litigation Explained</h4>
+            <span class="edu-tier paid">Paid</span>
+          </div>
+          <p>The full litigation process explained physician-to-physician. From the moment you're served papers through discovery, depositions, expert battles, settlement decisions, and trial. Practical knowledge that most physicians only learn under fire.</p>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-card-header">
+            <h4>Policy &amp; Regulatory Updates</h4>
+            <span class="edu-tier free">Free</span>
+          </div>
+          <p>Plain-language policy briefs that translate regulatory changes into "what to change Monday morning." CMS updates, telehealth licensure, tort reform, prior-auth reforms, and scope-of-practice legislation &mdash; no partisan framing, just actionable intelligence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARCHIVE (RSS-powered) ===== -->
+  <section id="archive">
+    <div class="section-inner">
+      <span class="section-label reveal">Newsletter Archive</span>
+      <h2 class="section-title reveal">Recent Publications</h2>
+      <p class="section-subtitle reveal" style="margin-bottom: 1rem;">
+        Live from Substack &mdash; updated automatically.
+      </p>
+      <div class="archive-grid" id="archiveGrid">
+        <div class="archive-loading" id="archiveLoading">
+          <div class="loading-spinner"></div>
+          <p>Loading latest publications...</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+        <a href="https://thecharteddefense.substack.com/archive" target="_blank" class="btn btn-outline">View Full Archive on Substack</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLLABORATE ===== -->
+  <section id="collaborate">
+    <div class="section-inner">
+      <span class="section-label reveal">Get Involved</span>
+      <h2 class="section-title reveal">Collaborate With Us</h2>
+      <p class="section-subtitle reveal">
+        The Charted Defense is building a community of physicians, attorneys, risk managers, and patient safety professionals. Here's how to get involved.
+      </p>
+      <div class="collab-grid">
+        <div class="collab-options">
+          <div class="collab-option reveal">
+            <h4>Case Submissions</h4>
+            <p>Know of a case that physicians need to understand? We investigate publicly available cases that carry lessons for clinical practice. Submit a case or topic for consideration.</p>
+          </div>
+          <div class="collab-option reveal">
+            <h4>Guest Contributions</h4>
+            <p>Attorneys, risk managers, and clinical specialists who want to contribute expert perspectives on malpractice trends, defense strategy, or patient safety.</p>
+          </div>
+          <div class="collab-option reveal">
+            <h4>Institutional Partnerships</h4>
+            <p>Hospitals, medical groups, and residency programs interested in incorporating medico-legal education into their training. Custom content and presentation opportunities available.</p>
+          </div>
+          <div class="collab-option reveal">
+            <h4>Media &amp; Speaking</h4>
+            <p>Michael is available for podcast appearances, conference presentations, and media commentary on medical malpractice trends, physician litigation impact, and healthcare law.</p>
+          </div>
+        </div>
+        <div class="contact-form reveal">
+          <h3>Get in Touch</h3>
+          <p>Whether you have a case to share, want to collaborate, or just want to connect &mdash; reach out.</p>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="type">Inquiry Type</label>
+              <select id="type" name="type">
+                <option value="case">Case Submission</option>
+                <option value="guest">Guest Contribution</option>
+                <option value="partnership">Institutional Partnership</option>
+                <option value="media">Media / Speaking</option>
+                <option value="general">General Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what you're thinking..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3 class="serif">The Charted Defense</h3>
+          <p>Rigorous physician education at the intersection of clinical medicine and the courtroom. Built by a physician, for physicians.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul>
+            <li><a href="#content">Case Files</a></li>
+            <li><a href="#content">Documentation Defense</a></li>
+            <li><a href="#content">Policy Watch</a></li>
+            <li><a href="#content">Risk Rounds</a></li>
+            <li><a href="#series">On The Record</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://thecharteddefense.substack.com" target="_blank">Substack</a></li>
+            <li><a href="https://youtube.com/@thecharteddefense" target="_blank">YouTube</a></li>
+            <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:thecharteddefense@gmail.com">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Charted Defense. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://thecharteddefense.substack.com" target="_blank">Substack</a>
+          <a href="https://youtube.com/@thecharteddefense" target="_blank">YouTube</a>
+          <a href="mailto:thecharteddefense@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== DISCLAIMER ===== -->
+  <div class="disclaimer">
+    <p>
+      <strong>Disclaimer:</strong> The Charted Defense provides educational content about medical malpractice and healthcare law. Nothing on this website constitutes legal or medical advice. All case analyses are based on publicly available information. For legal advice specific to your situation, consult a qualified attorney in your jurisdiction.
+    </p>
+  </div>
+
+  <script>
+    // ===== NAV SCROLL EFFECT =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== MOBILE MENU =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ===== RSS ARCHIVE LOADER =====
+    const SUBSTACK_RSS = 'https://thecharteddefense.substack.com/feed';
+    const archiveGrid = document.getElementById('archiveGrid');
+    const archiveLoading = document.getElementById('archiveLoading');
+
+    async function loadArchive() {
+      try {
+        // Use a CORS proxy for client-side RSS fetch
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(SUBSTACK_RSS);
+        const resp = await fetch(proxyUrl);
+        if (!resp.ok) throw new Error('Feed fetch failed');
+        const xml = await resp.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xml, 'text/xml');
+        const items = doc.querySelectorAll('item');
+
+        if (items.length === 0) throw new Error('No items');
+
+        archiveGrid.innerHTML = '';
+        const seen = new Set(); // deduplicate by title
+        let count = 0;
+
+        items.forEach(item => {
+          if (count >= 12) return; // show latest 12
+          const title = item.querySelector('title')?.textContent || '';
+          const link = item.querySelector('link')?.textContent || '#';
+          const pubDate = item.querySelector('pubDate')?.textContent || '';
+          const desc = item.querySelector('description')?.textContent || '';
+
+          // Deduplicate similar titles (free vs paid versions)
+          const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30);
+          if (seen.has(titleKey)) return;
+          seen.add(titleKey);
+
+          // Parse date
+          const date = new Date(pubDate);
+          const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+          // Strip HTML from description
+          const tmp = document.createElement('div');
+          tmp.innerHTML = desc;
+          const cleanDesc = tmp.textContent || tmp.innerText || '';
+
+          // Detect series from title keywords
+          let series = 'Case Files';
+          const lowerTitle = title.toLowerCase();
+          if (lowerTitle.includes('on the record') || lowerTitle.includes('season 1') || /s\d+\s*e(pisode)?\s*\d+/i.test(title)) {
+            series = 'On The Record';
+          } else if (lowerTitle.includes('emtala') || lowerTitle.includes('policy') || lowerTitle.includes('cms') || lowerTitle.includes('regulation')) {
+            series = 'Policy Watch';
+          } else if (lowerTitle.includes('documentation') || lowerTitle.includes('chart') || lowerTitle.includes('silent chart')) {
+            series = 'Documentation Defense';
+          } else if (lowerTitle.includes('anatomy') || lowerTitle.includes('lawsuit') || lowerTitle.includes('settlement') || lowerTitle.includes('expert witness') || lowerTitle.includes('playbook') || lowerTitle.includes('restatement')) {
+            series = 'Legal Playbook';
+          }
+
+          const el = document.createElement('a');
+          el.href = link;
+          el.target = '_blank';
+          el.className = 'archive-item reveal visible';
+          el.innerHTML = `
+            <div class="archive-meta">
+              <span class="archive-series">${series}</span>
+              <span class="archive-date">${dateStr}</span>
+            </div>
+            <h4>${title}</h4>
+            <p>${cleanDesc.slice(0, 200)}${cleanDesc.length > 200 ? '...' : ''}</p>
+          `;
+          archiveGrid.appendChild(el);
+          count++;
+        });
+      } catch (err) {
+        console.warn('RSS load failed, showing fallback:', err);
+        archiveGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+            <p style="color: var(--cream-dim); margin-bottom: 1.5rem;">
+              Unable to load the live feed right now. Visit the archive directly:
+            </p>
+            <a href="https://thecharteddefense.substack.com/archive" target="_blank" class="btn btn-outline">
+              Browse Archive on Substack
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    loadArchive();
+
+    // ===== CONTACT FORM =====
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const type = form.type.value;
+      const message = form.message.value;
+      // Build mailto link
+      const subject = encodeURIComponent('TCD Inquiry: ' + type.charAt(0).toUpperCase() + type.slice(1));
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nType: ' + type + '\n\n' + message);
+      window.location.href = 'mailto:thecharteddefense@gmail.com?subject=' + subject + '&body=' + body;
+    }
+
+    // ===== ACTIVE NAV LINK =====
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
