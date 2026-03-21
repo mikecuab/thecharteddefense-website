@@ -1314,7 +1314,9 @@
         <div class="contact-form reveal">
           <h3>Get in Touch</h3>
           <p>Whether you have a case to share, want to collaborate, or just want to connect &mdash; reach out.</p>
-          <form id="contactForm" onsubmit="handleSubmit(event)">
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Your full name" required>
@@ -1506,20 +1508,6 @@
     }
 
     loadArchive();
-
-    // ===== CONTACT FORM =====
-    function handleSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const name = form.name.value;
-      const email = form.email.value;
-      const type = form.type.value;
-      const message = form.message.value;
-      // Build mailto link
-      const subject = encodeURIComponent('TCD Inquiry: ' + type.charAt(0).toUpperCase() + type.slice(1));
-      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nType: ' + type + '\n\n' + message);
-      window.location.href = 'mailto:thecharteddefense@gmail.com?subject=' + subject + '&body=' + body;
-    }
 
     // ===== ACTIVE NAV LINK =====
     const sections = document.querySelectorAll('section[id]');
