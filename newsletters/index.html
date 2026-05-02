@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Archive — The Charted Defense</title>
+  <meta name="description" content="Long-form analysis at the intersection of clinical medicine and the courtroom. Browse the full archive of The Charted Defense newsletters — On The Record case breakdowns, Cognitive Autopsy diagnostic deep-dives, Documentation Defense, Policy Watch, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e1a;
+      color: #e8e6e1;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    :root {
+      --navy-deep: #0a0e1a;
+      --navy: #0f1629;
+      --navy-light: #1a2240;
+      --navy-mid: #243056;
+      --gold: #c9a84c;
+      --gold-light: #e4c96a;
+      --gold-dim: #a08532;
+      --cream: #e8e6e1;
+      --cream-dim: #b0aea8;
+      --white: #f5f4f0;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 26, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-brand-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-brand-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .nav-brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold) !important;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--navy-deep) !important;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201, 168, 76, 0.05) 0%, transparent 70%),
+        var(--navy-deep);
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .page-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--cream-dim);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ===== FILTER TABS ===== */
+    .filter-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem 2rem;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    }
+    .filter-tab {
+      padding: 0.55rem 1.2rem;
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.18);
+      border-radius: 2px;
+      color: var(--cream-dim);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-tab:hover {
+      border-color: rgba(201, 168, 76, 0.4);
+      color: var(--cream);
+    }
+    .filter-tab.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.08);
+    }
+
+    /* ===== NEWSLETTER GRID ===== */
+    .newsletter-grid-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+    .newsletter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .newsletter-card {
+      background: var(--navy);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .newsletter-card:hover {
+      border-color: rgba(201, 168, 76, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+    .newsletter-card-image {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--navy-light);
+    }
+    .newsletter-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .newsletter-card:hover .newsletter-card-image img {
+      transform: scale(1.05);
+    }
+    .newsletter-card-body {
+      padding: 1.5rem 1.5rem 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .newsletter-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .newsletter-card-series {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .newsletter-card-date {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+    }
+    .newsletter-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 0.85rem;
+    }
+    .newsletter-card-excerpt {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .newsletter-card-link {
+      margin-top: 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.3s;
+    }
+    .newsletter-card-link::after {
+      content: '\2192';
+    }
+    .newsletter-card:hover .newsletter-card-link {
+      gap: 0.65rem;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--cream-dim);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+      padding: 3rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-inner p { font-size: 0.78rem; color: var(--cream-dim); }
+    .footer-socials { display: flex; gap: 1.25rem; }
+    .footer-socials a {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .footer-socials a:hover { color: var(--gold); }
+    .disclaimer {
+      background: rgba(139, 58, 58, 0.08);
+      border-top: 1px solid rgba(139, 58, 58, 0.2);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    .disclaimer p {
+      font-size: 0.72rem;
+      color: var(--cream-dim);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <div class="nav-brand-icon"><img src="../images/logo.png" alt="The Charted Defense"></div>
+        <span class="nav-brand-text">The Charted Defense</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#series">On The Record</a></li>
+        <li><a href="index.html" class="active">Newsletter</a></li>
+        <li><a href="../index.html#collaborate">Collaborate</a></li>
+        <li><a href="https://thecharteddefense.substack.com" target="_blank" class="nav-cta">Subscribe</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="page-label">The Charted Defense Newsletter</div>
+    <h1 class="page-title">Long-Form Analysis</h1>
+    <p class="page-subtitle">Case breakdowns, diagnostic deep-dives, and policy briefs &mdash; written for physicians who want to understand the legal system they practice inside.</p>
+  </header>
+
+  <!-- ===== FILTER TABS ===== -->
+  <section class="filter-section">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="otr">On The Record</button>
+      <button class="filter-tab" data-filter="cognitive-autopsy">Cognitive Autopsy</button>
+      <button class="filter-tab" data-filter="case-files">Case Files</button>
+      <button class="filter-tab" data-filter="documentation">Documentation Defense</button>
+      <button class="filter-tab" data-filter="policy">Policy Watch</button>
+      <button class="filter-tab" data-filter="legal-playbook">Legal Playbook</button>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER GRID ===== -->
+  <section class="newsletter-grid-wrap">
+    <div class="newsletter-grid" id="newsletterGrid">
+
+      <a href="2026-03-otr-s2-wrong-blood-thinner.html" class="newsletter-card" data-category="otr">
+        <div class="newsletter-card-image">
+          <img src="../images/seasons/s2.jpg" alt="The Wrong Blood Thinner">
+        </div>
+        <div class="newsletter-card-body">
+          <div class="newsletter-card-meta">
+            <span class="newsletter-card-series">On The Record &middot; Season 2</span>
+            <span class="newsletter-card-date">Mar 27, 2026</span>
+          </div>
+          <h2 class="newsletter-card-title">The Wrong Blood Thinner</h2>
+          <p class="newsletter-card-excerpt">Warfarin had been the standard for APS for decades. Then DOACs hit the market &mdash; convenient, no blood draws, no dietary restrictions. For patients with antiphospholipid syndrome, convenience came at a cost.</p>
+          <span class="newsletter-card-link">Read full article</span>
+        </div>
+      </a>
+
+      <!-- Add new newsletter cards above this line. -->
+      <!-- Each card needs:
+           - href: the published .html filename
+           - data-category: otr | cognitive-autopsy | case-files | documentation | policy | legal-playbook
+           - cover image, series + date meta, title, excerpt
+      -->
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2025-2026 The Charted Defense. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://thecharteddefense.substack.com" target="_blank">Substack</a>
+        <a href="https://youtube.com/@thecharteddefense" target="_blank">YouTube</a>
+        <a href="mailto:thecharteddefense@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="disclaimer">
+    <p>
+      <strong>Disclaimer:</strong> The Charted Defense provides educational content about medical malpractice and healthcare law. Nothing on this website constitutes legal or medical advice. All case analyses are based on publicly available information. For legal advice specific to your situation, consult a qualified attorney in your jurisdiction.
+    </p>
+  </div>
+
+  <script>
+    // ===== FILTER TABS =====
+    const tabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.newsletter-card');
+    const grid = document.getElementById('newsletterGrid');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filter = tab.dataset.filter;
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Show empty state if no matches
+        const existingEmpty = grid.querySelector('.empty-state');
+        if (existingEmpty) existingEmpty.remove();
+        if (visibleCount === 0) {
+          const empty = document.createElement('div');
+          empty.className = 'empty-state';
+          empty.textContent = 'No newsletters in this category yet — check back soon.';
+          grid.appendChild(empty);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

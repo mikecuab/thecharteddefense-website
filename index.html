@@ -75,17 +75,16 @@
       gap: 0.75rem;
     }
     .nav-brand-icon {
-      width: 36px;
-      height: 36px;
-      border: 2px solid var(--gold);
-      border-radius: 4px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--gold);
+    }
+    .nav-brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     .nav-brand-text {
       font-family: 'Cormorant Garamond', serif;
@@ -334,7 +333,7 @@
     }
     .about-image-frame {
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 4/3;
       background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
       border: 1px solid rgba(201, 168, 76, 0.2);
       border-radius: 4px;
@@ -350,6 +349,17 @@
       inset: 8px;
       border: 1px solid rgba(201, 168, 76, 0.1);
       border-radius: 2px;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .about-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      z-index: 2;
     }
     .about-image-initials {
       font-family: 'Cormorant Garamond', serif;
@@ -357,6 +367,7 @@
       font-weight: 700;
       color: var(--gold);
       opacity: 0.15;
+      z-index: 1;
     }
     .about-credentials {
       display: flex;
@@ -481,111 +492,161 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
     }
-    .series-feature {
+    .otr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
       margin-top: 3rem;
-      padding: 3rem;
-      background: linear-gradient(135deg, rgba(201, 168, 76, 0.04), rgba(15, 22, 41, 0.5));
-      border: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    .otr-card {
+      background: var(--navy-deep);
+      border: 1px solid rgba(201, 168, 76, 0.1);
       border-radius: 6px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .series-info h3 {
-      font-size: 2rem;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-    .series-info .series-sub {
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .series-info p {
-      color: var(--cream-dim);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-    .season-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem 1.5rem;
-    }
-    .season-list li {
-      font-size: 0.88rem;
-      color: var(--cream-dim);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-    .season-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 6px;
-      height: 6px;
-      border: 1px solid var(--gold-dim);
-      border-radius: 1px;
-    }
-    .season-list li.active::before {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-    .series-visual {
+      overflow: hidden;
+      transition: all 0.3s;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
     }
-    .episode-bar {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: rgba(10, 14, 26, 0.6);
-      border: 1px solid rgba(201, 168, 76, 0.08);
-      border-radius: 3px;
-      transition: border-color 0.3s;
+    .otr-card:hover {
+      border-color: rgba(201, 168, 76, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
     }
-    .episode-bar:hover {
-      border-color: rgba(201, 168, 76, 0.25);
+    .otr-card-image {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--navy-light);
     }
-    .ep-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+    .otr-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .otr-card:hover .otr-card-image img {
+      transform: scale(1.05);
+    }
+    .otr-card-status {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      color: var(--gold);
-      min-width: 2.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 2px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
-    .ep-info {
+    .otr-card-status.live {
+      background: rgba(201, 168, 76, 0.92);
+      color: var(--navy-deep);
+    }
+    .otr-card-status.soon {
+      background: rgba(15, 22, 41, 0.75);
+      color: var(--gold-light);
+      border: 1px solid rgba(201, 168, 76, 0.55);
+    }
+    .otr-card-status.dev {
+      background: rgba(15, 22, 41, 0.75);
+      color: #8ab4f8;
+      border: 1px solid rgba(138, 180, 248, 0.45);
+    }
+    .otr-card-body {
+      padding: 1.4rem 1.4rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .otr-season-num {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .otr-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    .otr-card-desc {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
       flex: 1;
     }
-    .ep-title {
-      font-size: 0.88rem;
-      font-weight: 500;
+    .otr-card-release {
+      margin-top: 1.1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+    .release-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.5rem;
+    }
+    .release-dates {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.85rem;
+      font-size: 0.78rem;
       color: var(--cream);
     }
-    .ep-desc {
-      font-size: 0.75rem;
-      color: var(--cream-dim);
-      margin-top: 0.15rem;
-    }
-    .ep-badge {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
+    .release-dates span {
       white-space: nowrap;
     }
-    .ep-badge.live { background: rgba(201, 168, 76, 0.15); color: var(--gold); }
-    .ep-badge.dev { background: rgba(100, 140, 200, 0.15); color: #8ab4f8; }
+    .release-dates .ep {
+      color: var(--gold);
+      font-weight: 600;
+      margin-right: 0.25rem;
+    }
+    .otr-card-link {
+      margin-top: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.7rem 1.1rem;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      border-radius: 3px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.04);
+      transition: all 0.3s;
+      align-self: flex-start;
+    }
+    .otr-card-link:hover {
+      background: var(--gold);
+      color: var(--navy-deep);
+      border-color: var(--gold);
+    }
+    .otr-card-link::after {
+      content: '\2192';
+      transition: transform 0.3s;
+    }
+    .otr-card-link:hover::after {
+      transform: translateX(3px);
+    }
+    .otr-footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      font-style: italic;
+    }
 
     /* ===== EDUCATIONAL HUB ===== */
     #education {
@@ -993,15 +1054,15 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-brand">
-        <div class="nav-brand-icon">CD</div>
+        <div class="nav-brand-icon"><img src="images/logo.png" alt="The Charted Defense"></div>
         <span class="nav-brand-text">The Charted Defense</span>
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#content">Content</a></li>
         <li><a href="#series">On The Record</a></li>
+        <li><a href="newsletters/index.html">Newsletter</a></li>
         <li><a href="#education">Education</a></li>
-        <li><a href="#archive">Archive</a></li>
         <li><a href="#collaborate">Collaborate</a></li>
         <li><a href="https://thecharteddefense.substack.com" target="_blank" class="nav-cta">Subscribe</a></li>
       </ul>
@@ -1042,6 +1103,7 @@
       <div class="about-grid">
         <div class="about-image reveal">
           <div class="about-image-frame">
+            <img src="images/michael-coleman.jpg" alt="Michael Coleman, MD" class="about-photo" onerror="this.style.display='none'">
             <span class="about-image-initials">MC</span>
           </div>
           <div class="about-credentials">
@@ -1166,61 +1228,179 @@
       <p class="section-subtitle reveal">
         A documentary-style premium series. Each season reconstructs a single malpractice case across multiple episodes &mdash; turning court records into cinematic storytelling.
       </p>
-      <div class="series-feature reveal">
-        <div class="series-info">
-          <div class="series-sub">10 Seasons Planned</div>
-          <h3>From Complaint to Verdict</h3>
-          <p>
-            Each OTR season takes one real malpractice case and breaks it down episode by episode: the clinical encounter, what went wrong, the legal filings, expert testimony, defense strategy, and the final outcome.
-          </p>
-          <p>
-            Spanning critical care, obstetrics, radiology, emergency medicine, psychiatry, pediatrics, and institutional liability &mdash; OTR is a complete education in how clinical medicine becomes courtroom evidence.
-          </p>
-          <ul class="season-list">
-            <li class="active">S1: Pressure Injuries &amp; Documentation</li>
-            <li class="active">S2: The Wrong Blood Thinner</li>
-            <li>S3: Delayed Diagnosis</li>
-            <li>S4: Vasopressor Overdose</li>
-            <li>S5: The 45-Minute Delay</li>
-            <li>S6: The Five-Minute Read</li>
-            <li>S7: The Protocol Failure</li>
-            <li>S8: Discharge &amp; Death</li>
-            <li>S9: When the Hospital Goes Bankrupt</li>
-            <li>S10: False Imprisonment</li>
-          </ul>
-        </div>
-        <div class="series-visual">
-          <div class="episode-bar">
-            <span class="ep-num">S2</span>
-            <div class="ep-info">
-              <div class="ep-title">The Wrong Blood Thinner</div>
-              <div class="ep-desc">Hematology, care fragmentation, and a multi-defendant case</div>
-            </div>
-            <span class="ep-badge dev">In Development</span>
+      <div class="otr-grid reveal">
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s1.png" alt="On The Record Season 1: How a Wound Becomes a Lawsuit">
+            <span class="otr-card-status live">Available</span>
           </div>
-          <div class="episode-bar">
-            <span class="ep-num">E01</span>
-            <div class="ep-info">
-              <div class="ep-title">The Patient</div>
-              <div class="ep-desc">Clinical history and the medical context</div>
-            </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 01</div>
+            <h3 class="otr-card-title">How a Wound Becomes a Lawsuit</h3>
+            <p class="otr-card-desc">A pressure injury becomes a wrongful death case. Episodes trace the hospitalization, the family's lawsuit, and how documentation &mdash; or its absence &mdash; defines defensibility.</p>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="otr-card-link">Listen on Substack</a>
           </div>
-          <div class="episode-bar">
-            <span class="ep-num">E02</span>
-            <div class="ep-info">
-              <div class="ep-title">The Wrong Blood Thinner</div>
-              <div class="ep-desc">The pharmacology and evolving standards of care</div>
-            </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s2.jpg" alt="On The Record Season 2: The Wrong Blood Thinner">
+            <span class="otr-card-status live">Available</span>
           </div>
-          <div class="episode-bar">
-            <span class="ep-num">E03</span>
-            <div class="ep-info">
-              <div class="ep-title">The Dueling Medical Experts</div>
-              <div class="ep-desc">When expert testimony defines the case</div>
-            </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 02</div>
+            <h3 class="otr-card-title">The Wrong Blood Thinner</h3>
+            <p class="otr-card-desc">Warfarin had been the standard for APS for decades. Then DOACs hit the market. For patients with Antiphospholipid Syndrome, convenience came at a cost.</p>
+            <a href="https://thecharteddefense.substack.com/p/the-wrong-blood-thinner" target="_blank" class="otr-card-link">Listen on Substack</a>
           </div>
-        </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s3.jpg" alt="On The Record Season 3: The Great Pretender">
+            <span class="otr-card-status live">Available</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 03</div>
+            <h3 class="otr-card-title">The Great Pretender</h3>
+            <p class="otr-card-desc">A delayed fungal infection diagnosis becomes a $16.5M verdict &mdash; then an appellate reversal. How pulmonary mimics fool experienced clinicians, and how the appellate process can rewrite a malpractice case.</p>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="otr-card-link">Listen on Substack</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s4.jpg" alt="On The Record Season 4: Burning Time">
+            <span class="otr-card-status live">Available</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 04</div>
+            <h3 class="otr-card-title">Burning Time</h3>
+            <p class="otr-card-desc">A middle-aged man with chest pain. A STEMI transfer that takes too long. An airway cascade in the cath lab. Three episodes on cascading system failures and a nuclear verdict.</p>
+            <a href="https://thecharteddefense.substack.com/p/the-man" target="_blank" class="otr-card-link">Listen on Substack</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s5.jpg" alt="On The Record Season 5: Three Visits">
+            <span class="otr-card-status soon">Premiering May 4</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 05</div>
+            <h3 class="otr-card-title">Three Visits</h3>
+            <p class="otr-card-desc">A patient returns three times before something gets caught. A study in how repeat visits, anchoring, and discharge readiness combine to create malpractice exposure.</p>
+            <div class="otr-card-release">
+              <div class="release-label">Release Schedule</div>
+              <div class="release-dates">
+                <span><span class="ep">E1</span>May 4</span>
+                <span><span class="ep">E2</span>May 6</span>
+                <span><span class="ep">E3</span>May 8</span>
+              </div>
+            </div>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="otr-card-link">Listen on Substack</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s6.jpeg" alt="On The Record Season 6: No Response">
+            <span class="otr-card-status soon">Premiering May 9</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 06</div>
+            <h3 class="otr-card-title">No Response</h3>
+            <p class="otr-card-desc">Two hours can decide a case. Symptom timing, triage decisions, and the hospital settlement that left a directed verdict in its wake.</p>
+            <div class="otr-card-release">
+              <div class="release-label">Release Schedule</div>
+              <div class="release-dates">
+                <span><span class="ep">E1</span>May 9</span>
+                <span><span class="ep">E2</span>May 10</span>
+                <span><span class="ep">E3</span>May 11</span>
+              </div>
+            </div>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="otr-card-link">Listen on Substack</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s7.jpg" alt="On The Record Season 7: The Closing Window">
+            <span class="otr-card-status soon">Premiering May 14</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 07</div>
+            <h3 class="otr-card-title">The Closing Window</h3>
+            <p class="otr-card-desc">There's a window where intervention still works. This is the case of what happens when it closes &mdash; and how the legal record reconstructs a clinical decision after the fact.</p>
+            <div class="otr-card-release">
+              <div class="release-label">Release Schedule</div>
+              <div class="release-dates">
+                <span><span class="ep">E1</span>May 14</span>
+                <span><span class="ep">E2</span>May 16</span>
+              </div>
+            </div>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="otr-card-link">Listen on Substack</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s8.jpg" alt="On The Record Season 8: No Note, No Defense">
+            <span class="otr-card-status soon">Premiering May 18</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 08</div>
+            <h3 class="otr-card-title">No Note, No Defense</h3>
+            <p class="otr-card-desc">A neurosurgical case where the absence of a single note shaped the outcome. Documentation isn't paperwork &mdash; it's evidence.</p>
+            <div class="otr-card-release">
+              <div class="release-label">Release Schedule</div>
+              <div class="release-dates">
+                <span><span class="ep">E1</span>May 18</span>
+              </div>
+            </div>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="otr-card-link">Listen on Substack</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s-X.png" alt="On The Record Season 9: Four Hours">
+            <span class="otr-card-status dev">In Production</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 09</div>
+            <h3 class="otr-card-title">Four Hours</h3>
+            <p class="otr-card-desc">A four-hour stroke window. A radiology read. An EM disposition. A case where comparative fault becomes the central question.</p>
+            <div class="otr-card-release">
+              <div class="release-label">Release Schedule</div>
+              <div class="release-dates">
+                <span>Coming Summer 2026</span>
+              </div>
+            </div>
+            <a href="https://thecharteddefense.substack.com/subscribe" target="_blank" class="otr-card-link">Subscribe for Updates</a>
+          </div>
+        </article>
+
+        <article class="otr-card">
+          <div class="otr-card-image">
+            <img src="images/seasons/s-X.png" alt="On The Record Season 10: Inside the Window">
+            <span class="otr-card-status dev">In Production</span>
+          </div>
+          <div class="otr-card-body">
+            <div class="otr-season-num">Season 10</div>
+            <h3 class="otr-card-title">Inside the Window</h3>
+            <p class="otr-card-desc">What happens when care falls inside the standard-of-care window &mdash; but the outcome is still bad. How juries judge timing when nothing technically went wrong.</p>
+            <div class="otr-card-release">
+              <div class="release-label">Release Schedule</div>
+              <div class="release-dates">
+                <span>Coming Summer 2026</span>
+              </div>
+            </div>
+            <a href="https://thecharteddefense.substack.com/subscribe" target="_blank" class="otr-card-link">Subscribe for Updates</a>
+          </div>
+        </article>
       </div>
+      <p class="otr-footer-note reveal">More cases in research &mdash; Seasons 11&ndash;18 in the pipeline.</p>
     </div>
   </section>
 
@@ -1265,22 +1445,46 @@
     </div>
   </section>
 
-  <!-- ===== ARCHIVE (RSS-powered) ===== -->
+  <!-- ===== NEWSLETTER PREVIEW ===== -->
   <section id="archive">
     <div class="section-inner">
-      <span class="section-label reveal">Newsletter Archive</span>
-      <h2 class="section-title reveal">Recent Publications</h2>
+      <span class="section-label reveal">The Newsletter</span>
+      <h2 class="section-title reveal">Long-Form Analysis</h2>
       <p class="section-subtitle reveal" style="margin-bottom: 1rem;">
-        Live from Substack &mdash; updated automatically.
+        Magazine-style case breakdowns, diagnostic deep-dives, and policy briefs &mdash; written for physicians who want to understand the legal system they practice inside.
       </p>
-      <div class="archive-grid" id="archiveGrid">
-        <div class="archive-loading" id="archiveLoading">
+      <div class="archive-grid" id="archiveGrid" style="margin-top: 2.5rem;">
+        <a href="newsletters/2026-03-otr-s2-wrong-blood-thinner.html" class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-series">On The Record</span>
+            <span class="archive-date">Mar 27, 2026</span>
+          </div>
+          <h4>The Wrong Blood Thinner</h4>
+          <p>Warfarin had been the standard for APS for decades. Then DOACs hit the market &mdash; convenient, no blood draws, no dietary restrictions. For patients with antiphospholipid syndrome, convenience came at a cost.</p>
+        </a>
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
+        <a href="newsletters/index.html" class="btn btn-outline">View Full Newsletter Archive</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST FROM SUBSTACK (live RSS) ===== -->
+  <section id="substack-feed" style="background: var(--navy-deep);">
+    <div class="section-inner">
+      <span class="section-label reveal">From the Feed</span>
+      <h2 class="section-title reveal">Latest from Substack</h2>
+      <p class="section-subtitle reveal" style="margin-bottom: 1rem;">
+        The full publication feed &mdash; episodes, newsletters, and analyses, updated automatically.
+      </p>
+      <div class="archive-grid" id="substackGrid" style="margin-top: 2.5rem;">
+        <div class="archive-loading" id="substackLoading">
           <div class="loading-spinner"></div>
           <p>Loading latest publications...</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
-        <a href="https://thecharteddefense.substack.com/archive" target="_blank" class="btn btn-outline">View Full Archive on Substack</a>
+        <a href="https://thecharteddefense.substack.com" target="_blank" class="btn btn-outline">Read More on Substack</a>
       </div>
     </div>
   </section>
@@ -1358,11 +1562,12 @@
         <div class="footer-col">
           <h4>Content</h4>
           <ul>
+            <li><a href="#series">On The Record</a></li>
+            <li><a href="newsletters/index.html">Newsletter Archive</a></li>
             <li><a href="#content">Case Files</a></li>
             <li><a href="#content">Documentation Defense</a></li>
             <li><a href="#content">Policy Watch</a></li>
             <li><a href="#content">Risk Rounds</a></li>
-            <li><a href="#series">On The Record</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1422,14 +1627,12 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // ===== RSS ARCHIVE LOADER =====
+    // ===== SUBSTACK RSS LOADER =====
     const SUBSTACK_RSS = 'https://thecharteddefense.substack.com/feed';
-    const archiveGrid = document.getElementById('archiveGrid');
-    const archiveLoading = document.getElementById('archiveLoading');
+    const substackGrid = document.getElementById('substackGrid');
 
-    async function loadArchive() {
+    async function loadSubstack() {
       try {
-        // Use a CORS proxy for client-side RSS fetch
         const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(SUBSTACK_RSS);
         const resp = await fetch(proxyUrl);
         if (!resp.ok) throw new Error('Feed fetch failed');
@@ -1437,42 +1640,39 @@
         const parser = new DOMParser();
         const doc = parser.parseFromString(xml, 'text/xml');
         const items = doc.querySelectorAll('item');
-
         if (items.length === 0) throw new Error('No items');
 
-        archiveGrid.innerHTML = '';
-        const seen = new Set(); // deduplicate by title
+        substackGrid.innerHTML = '';
+        const seen = new Set();
         let count = 0;
 
         items.forEach(item => {
-          if (count >= 12) return; // show latest 12
+          if (count >= 9) return; // show latest 9
           const title = item.querySelector('title')?.textContent || '';
           const link = item.querySelector('link')?.textContent || '#';
           const pubDate = item.querySelector('pubDate')?.textContent || '';
           const desc = item.querySelector('description')?.textContent || '';
 
-          // Deduplicate similar titles (free vs paid versions)
           const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30);
           if (seen.has(titleKey)) return;
           seen.add(titleKey);
 
-          // Parse date
           const date = new Date(pubDate);
           const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-          // Strip HTML from description
           const tmp = document.createElement('div');
           tmp.innerHTML = desc;
           const cleanDesc = tmp.textContent || tmp.innerText || '';
 
-          // Detect series from title keywords
           let series = 'Case Files';
           const lowerTitle = title.toLowerCase();
-          if (lowerTitle.includes('on the record') || lowerTitle.includes('season 1') || /s\d+\s*e(pisode)?\s*\d+/i.test(title)) {
+          if (lowerTitle.includes('on the record') || /\bs\d+\s*e\d+/i.test(title) || /season\s*\d+/i.test(lowerTitle)) {
             series = 'On The Record';
-          } else if (lowerTitle.includes('emtala') || lowerTitle.includes('policy') || lowerTitle.includes('cms') || lowerTitle.includes('regulation')) {
+          } else if (lowerTitle.includes('cognitive') || lowerTitle.includes('autopsy') || lowerTitle.includes('migraine') || lowerTitle.includes('drug-seeking') || lowerTitle.includes('attestation')) {
+            series = 'Cognitive Autopsy';
+          } else if (lowerTitle.includes('emtala') || lowerTitle.includes('policy') || lowerTitle.includes('cms') || lowerTitle.includes('regulation') || lowerTitle.includes('immunity')) {
             series = 'Policy Watch';
-          } else if (lowerTitle.includes('documentation') || lowerTitle.includes('chart') || lowerTitle.includes('silent chart')) {
+          } else if (lowerTitle.includes('documentation') || lowerTitle.includes('chart') || lowerTitle.includes('silent chart') || lowerTitle.includes('template')) {
             series = 'Documentation Defense';
           } else if (lowerTitle.includes('anatomy') || lowerTitle.includes('lawsuit') || lowerTitle.includes('settlement') || lowerTitle.includes('expert witness') || lowerTitle.includes('playbook') || lowerTitle.includes('restatement')) {
             series = 'Legal Playbook';
@@ -1490,25 +1690,21 @@
             <h4>${title}</h4>
             <p>${cleanDesc.slice(0, 200)}${cleanDesc.length > 200 ? '...' : ''}</p>
           `;
-          archiveGrid.appendChild(el);
+          substackGrid.appendChild(el);
           count++;
         });
       } catch (err) {
         console.warn('RSS load failed, showing fallback:', err);
-        archiveGrid.innerHTML = `
+        substackGrid.innerHTML = `
           <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-            <p style="color: var(--cream-dim); margin-bottom: 1.5rem;">
-              Unable to load the live feed right now. Visit the archive directly:
-            </p>
-            <a href="https://thecharteddefense.substack.com/archive" target="_blank" class="btn btn-outline">
-              Browse Archive on Substack
-            </a>
+            <p style="color: var(--cream-dim); margin-bottom: 1.5rem;">Unable to load the live feed right now.</p>
+            <a href="https://thecharteddefense.substack.com" target="_blank" class="btn btn-outline">Browse on Substack</a>
           </div>
         `;
       }
     }
 
-    loadArchive();
+    loadSubstack();
 
     // ===== ACTIVE NAV LINK =====
     const sections = document.querySelectorAll('section[id]');
