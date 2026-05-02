@@ -648,6 +648,92 @@
       font-style: italic;
     }
 
+    /* ===== WATCH NOW (FEATURED EPISODE) ===== */
+    #watch {
+      background: var(--navy-deep);
+      position: relative;
+    }
+    #watch::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+    }
+    .watch-wrap {
+      max-width: 960px;
+      margin: 3rem auto 0;
+    }
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      background: var(--navy-light);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+    .video-frame iframe,
+    .video-frame video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .watch-meta {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+    .watch-info-series {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .watch-info-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+    }
+    .watch-info-desc {
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    .watch-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .watch-rotation-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream-dim);
+    }
+    .watch-rotation-note .gold-accent { color: var(--gold); }
+    @media (max-width: 720px) {
+      .watch-meta { grid-template-columns: 1fr; }
+      .watch-actions { justify-content: flex-start; }
+    }
+
     /* ===== EDUCATIONAL HUB ===== */
     #education {
       background: var(--navy-deep);
@@ -1059,8 +1145,8 @@
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
-        <li><a href="#content">Content</a></li>
         <li><a href="#series">On The Record</a></li>
+        <li><a href="#watch">Watch</a></li>
         <li><a href="newsletters/index.html">Newsletter</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#collaborate">Collaborate</a></li>
@@ -1404,6 +1490,50 @@
     </div>
   </section>
 
+  <!-- ===== WATCH NOW (FEATURED EPISODE) =====
+       To rotate the featured video, swap the iframe src below.
+       YouTube format: https://www.youtube-nocookie.com/embed/VIDEO_ID
+       (Use youtube-nocookie.com for privacy-enhanced playback.)
+       To use a self-hosted video instead, replace the <iframe> with:
+         <video controls preload="metadata" poster="path/to/poster.jpg">
+           <source src="path/to/video.mp4" type="video/mp4">
+         </video>
+  -->
+  <section id="watch">
+    <div class="section-inner">
+      <span class="section-label reveal">Free This Week</span>
+      <h2 class="section-title reveal">Watch a Full Episode</h2>
+      <p class="section-subtitle reveal">
+        A rotating free episode from the catalog. New episode each cycle &mdash; no paywall, no signup, just press play.
+      </p>
+      <div class="watch-wrap reveal">
+        <div class="video-frame">
+          <iframe
+            id="watchFrame"
+            src="https://www.youtube-nocookie.com/embed/DK9NzGqiO9g?rel=0"
+            title="The Charted Defense — Featured Episode"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
+        <div class="watch-meta">
+          <div class="watch-info">
+            <div id="watchSeries" class="watch-info-series">On The Record &middot; Featured</div>
+            <h3 id="watchTitle" class="watch-info-title">Loading featured episode&hellip;</h3>
+            <p id="watchDesc" class="watch-info-desc">The featured episode rotates every few days. New each cycle, no paywall, no signup, just press play.</p>
+          </div>
+          <div class="watch-actions">
+            <a href="https://youtube.com/@thecharteddefense" target="_blank" class="btn btn-outline">Full Channel</a>
+            <a href="https://thecharteddefense.substack.com/subscribe" target="_blank" class="btn btn-primary">Subscribe</a>
+          </div>
+        </div>
+        <p class="watch-rotation-note reveal">Episode rotates every 3 days from the YouTube channel. <span class="gold-accent">Subscribe</span> to catch every release.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== EDUCATION HUB ===== -->
   <section id="education">
     <div class="section-inner">
@@ -1626,6 +1756,45 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
+
+    // ===== FEATURED EPISODE ROTATION =====
+    // Rotates the embedded YouTube video on a fixed cadence.
+    // Add or remove entries below to expand the rotation pool.
+    // Period is set in days — change PERIOD_DAYS to rotate faster/slower.
+    const FEATURED_VIDEOS = [
+      { id: 'uKl9pW-jJC8', series: 'On The Record · Season 4 · Episode 1', title: 'The Patient', desc: 'A middle-aged man with chest pain. The clinical sequence that became a malpractice lawsuit.' },
+      { id: '5fH1DdVzYUA', series: 'On The Record · Season 4 · Episode 2', title: 'The Lawsuit', desc: 'From bedside to courtroom: the complaint, discovery, and how a death becomes a legal case.' },
+      { id: 'DK9NzGqiO9g', series: 'On The Record · Season 4 · Episode 3', title: 'The Experts', desc: 'Expert witness testimony, reptile theory, and the verdict that closed the case.' },
+      { id: '1TJYQ229idM', series: 'On The Record · Season 2 · Episode 2', title: 'The Wrong Blood Thinner', desc: 'Pharmacology, evolving standards of care, and the case at the heart of the season.' },
+      { id: 'RvhTsCUOSx0', series: 'On The Record · Season 2 · Episode 3', title: 'Making The Case', desc: 'When expert testimony defines the case and dueling experts meet at trial.' },
+      { id: 'evi2G-608L8', series: 'Cognitive Autopsy · Case 5', title: 'Drug-Seeking', desc: 'Critical limb ischemia dismissed as drug-seeking — attribution bias and a documentation lesson.' },
+      { id: '-L50AahA1o0', series: 'Cognitive Autopsy', title: 'The Eleven-Second Attestation', desc: 'When a stroke looks like a migraine and the chart tells the whole story.' },
+      { id: 'XztHowgm0C4', series: 'Cognitive Autopsy', title: 'The Back Pain You Cannot Afford to Miss', desc: 'Cauda equina, anchoring bias, and the diagnostic miss that changes a life.' },
+      { id: 'Rl9yatSpIdM', series: 'Standalone', title: 'The Outpatient MRI Trap', desc: 'A Georgia cauda equina case and the discharge decision that opened the door to liability.' },
+      { id: 'OuqoFwqW1q8', series: 'Standalone', title: 'The Ankle Reflex Trap', desc: 'When experience becomes the enemy — examination shortcuts and the cases they miss.' },
+      { id: 'C6xnZWITM-g', series: 'Standalone', title: 'Deposition Prep Under Stress', desc: 'Why good doctors give bad answers — and how to prepare for the moments that matter.' },
+      { id: 'hn0b1wkNhXE', series: 'Standalone', title: 'The First Label', desc: 'How triage notes anchor the differential and derail the diagnosis.' }
+    ];
+    const PERIOD_DAYS = 3;
+
+    (function rotateFeatured() {
+      try {
+        if (!FEATURED_VIDEOS.length) return;
+        const periodMs = 1000 * 60 * 60 * 24 * PERIOD_DAYS;
+        const idx = Math.floor(Date.now() / periodMs) % FEATURED_VIDEOS.length;
+        const v = FEATURED_VIDEOS[idx];
+        const frame = document.getElementById('watchFrame');
+        const series = document.getElementById('watchSeries');
+        const title = document.getElementById('watchTitle');
+        const desc = document.getElementById('watchDesc');
+        if (frame) frame.src = `https://www.youtube-nocookie.com/embed/${v.id}?rel=0`;
+        if (series) series.textContent = v.series;
+        if (title) title.textContent = v.title;
+        if (desc) desc.textContent = v.desc;
+      } catch (err) {
+        console.warn('Featured episode rotation failed:', err);
+      }
+    })();
 
     // ===== SUBSTACK RSS LOADER =====
     const SUBSTACK_RSS = 'https://thecharteddefense.substack.com/feed';
