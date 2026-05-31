@@ -87,6 +87,24 @@
   footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
   footer a{color:#cdd6e6}
 
+  /* FEES */
+  .fees{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .fee-table{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:30px}
+  .fee-row{display:grid;grid-template-columns:1.15fr 0.55fr 1.7fr;gap:18px;align-items:center;padding:16px 22px;border-bottom:1px solid var(--line)}
+  .fee-row:last-child{border-bottom:0}
+  .fee-row.head{background:var(--navy);color:#fff}
+  .fee-row.head .fr-svc,.fee-row.head .fr-det{color:#fff;font-family:'Source Sans 3',sans-serif;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  .fee-row:nth-child(even):not(.head){background:#faf9f6}
+  .fr-svc{font-family:'Playfair Display',serif;font-size:16.5px;color:var(--navy);font-weight:600}
+  .fr-rate{font-weight:700;color:var(--ink);font-size:15px;white-space:nowrap}
+  .fr-det{font-size:13.5px;color:var(--muted)}
+  .terms{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .term{background:#fff;border:1px solid var(--line);border-radius:9px;padding:20px}
+  .term h4{font-family:'Playfair Display',serif;color:var(--navy);font-size:16px;margin:0 0 8px}
+  .term ul{margin:0;padding-left:18px}
+  .term li{font-size:13.5px;color:#3a4250;margin-bottom:6px}
+  .fee-note{font-size:13px;color:var(--muted);margin-top:22px;font-style:italic}
+
   @media (max-width:760px){
     nav.top .links{display:none}
     nav.top .nav-cta{display:none}
@@ -100,6 +118,10 @@
     .about-photo{max-width:260px}
     .creds{grid-template-columns:1fr}
     .cgrid{grid-template-columns:1fr}
+    .fee-row{grid-template-columns:1fr;gap:4px;padding:15px 16px}
+    .fee-row.head{display:none}
+    .fr-rate{color:var(--navy)}
+    .terms{grid-template-columns:1fr}
     section{padding:48px 0}
   }
 </style>
@@ -115,7 +137,8 @@
     <div class="links">
       <a href="#services">Services</a>
       <a href="#reviews">Case Reviews</a>
-      <a href="#about">About Mike Coleman</a>
+      <a href="#fees">Fees</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
     <a class="nav-cta" href="https://calendar.app.google/hVWEfvB3Ns5hUcqf7" target="_blank" rel="noopener">Schedule a Consultation</a>
@@ -148,6 +171,48 @@
     <div class="label">Case Reviews</div>
     <h2 class="sec">A structured, honest read on every chart</h2>
     <p class="sec-intro">Every engagement begins with a preliminary review: a candid opinion on the medicine before you invest in full litigation support. You get a clinician who chairs hospital peer review and adverse-outcome analysis — and who understands exactly how a chart becomes legal evidence.</p>
+  </div></section>
+
+  <!-- FEE SCHEDULE -->
+  <section class="fees" id="fees"><div class="wrap">
+    <div class="label">Fee Schedule</div>
+    <h2 class="sec">Transparent, flat hourly rates</h2>
+    <p class="sec-intro">The same rates apply to plaintiff and defense engagements. All fees are for my time and professional opinion — never contingent on the outcome of a case.</p>
+    <div class="fee-table">
+      <div class="fee-row head"><div class="fr-svc">Service</div><div class="fr-rate">Rate</div><div class="fr-det">Details</div></div>
+      <div class="fee-row"><div class="fr-svc">Case Review &amp; Record Analysis</div><div class="fr-rate">$450 / hr</div><div class="fr-det">Review of medical records, research, and case analysis</div></div>
+      <div class="fee-row"><div class="fr-svc">Written Reports &amp; Expert Opinions</div><div class="fr-rate">$450 / hr</div><div class="fr-det">Expert reports, affidavits, and opinion letters</div></div>
+      <div class="fee-row"><div class="fr-svc">Attorney Conferences &amp; Consultations</div><div class="fr-rate">$450 / hr</div><div class="fr-det">Telephone, video, or in-person consultations with retaining counsel</div></div>
+      <div class="fee-row"><div class="fr-svc">Deposition Testimony</div><div class="fr-rate">$550 / hr</div><div class="fr-det">Sworn testimony, including day-of preparation. 3-hour minimum.</div></div>
+      <div class="fee-row"><div class="fr-svc">Trial Testimony</div><div class="fr-rate">$600 / hr</div><div class="fr-det">Courtroom testimony and same-day preparation. Half-day (4-hour) minimum.</div></div>
+      <div class="fee-row"><div class="fr-svc">Travel Time</div><div class="fr-rate">$225 / hr</div><div class="fr-det">Portal-to-portal. Travel expenses billed separately at cost.</div></div>
+      <div class="fee-row"><div class="fr-svc">Rush / Expedited Work</div><div class="fr-rate">1.5× rate</div><div class="fr-det">Turnaround required within 72 hours of engagement</div></div>
+    </div>
+    <div class="terms">
+      <div class="term">
+        <h4>Retainer &amp; Billing</h4>
+        <ul>
+          <li>Non-refundable retainer of <strong>$2,250</strong> (5 hours of case review), credited against billing, due before work begins.</li>
+          <li>Billed in quarter-hour increments; itemized invoices issued monthly, net 30.</li>
+          <li>Retaining attorney or firm is responsible for fees regardless of outcome.</li>
+        </ul>
+      </div>
+      <div class="term">
+        <h4>Minimums &amp; Cancellation</h4>
+        <ul>
+          <li>Deposition: 3-hour minimum ($1,650). Trial: half-day minimum ($2,400). Prepaid on scheduling.</li>
+          <li>4+ weeks' notice: full refund. 2–4 weeks: 50% retained. Under 2 weeks: no refund.</li>
+        </ul>
+      </div>
+      <div class="term">
+        <h4>Ethics &amp; Scope</h4>
+        <ul>
+          <li>Identical rates for plaintiff and defense; no contingency arrangements.</li>
+          <li>All case materials handled confidentially under applicable rules of professional conduct.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fee-note">Fee schedule effective March 2026 and subject to revision. Expenses (airfare, lodging, ground transportation, meals, mileage at the current IRS rate) are billed at cost in addition to professional fees.</p>
   </div></section>
 
   <!-- ABOUT -->
