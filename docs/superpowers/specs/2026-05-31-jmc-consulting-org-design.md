@@ -74,10 +74,10 @@
 
 ## 7. The Booking Link
 
-- Primary CTA and Contact section link to Michael's **Google Calendar appointment schedule**
-  (`https://calendar.app.google/…`) created on the `michaelcoleman@thecharteddefense.org` account.
-- If the live link is not yet available at build time, use a clearly-marked placeholder `href="#contact"`
-  and a TODO so it can be swapped in one edit.
+- Primary CTA and Contact section link to Michael's **Google Calendar appointment schedule**:
+  **`https://calendar.app.google/hVWEfvB3Ns5hUcqf7`** (opens in a new tab).
+- The Contact section also embeds the booking page in an `<iframe>` where supported, with the button as
+  the reliable fallback.
 
 ## 8. Files Produced
 
@@ -100,5 +100,4 @@ jmc/
 
 ## 10. Open Items
 
-- Live Google Calendar booking URL (Michael to supply; placeholder otherwise).
 - Confirm apex-vs-www handling in Cloudflare during the wiring step.
